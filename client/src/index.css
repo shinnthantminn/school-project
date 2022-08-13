@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.form {
+  @apply border rounded-sm outline-0 w-full px-3 py-3 rounded-full mt-2 duration-300 focus:ring-2 focus:ring-green-200;
+}
+
+.first {
+  background-image: url("./access/s-migaj-Yui5vfKHuzs-unsplash.jpg");
+}
+.paris {
+  background-image: url("./access/rafael-kellermann-streit-24LIw3veBi4-unsplash.jpg");
+}
+
+.burma {
+  background-image: url("./access/majkell-projku-a_-hYhh-R3Q-unsplash.jpg");
+}
+
+.siyun {
+  background-image: url("./access/siyuan-hu-Jea4t6pte-k-unsplash.jpg");
+}
+
+.Canada {
+  background-image: url("./access/miguel-carraca-Yfbg-D-9kjo-unsplash.jpg");
+}
+
+.norway {
+  background-image: url("./access/matej-drha-DB3t1QjLPZw-unsplash.jpg");
+}
+
+.menu {
+  @apply border sm:flex sm:text-base items-center sm:border-0 duration-300  flex-col px-4 lg:px-2 lg:flex-row w-[50%] space-y-2 lg:space-y-0 lg:w-fit sm:text-lg text-green-800 font-[500] fixed h-screen lg:h-fit bg-white top-0 right-0 lg:static lg:space-x-8;
+}
+
+.dropdown {
+  @apply bg-white sm:border sm:text-xs  w-[150px] rounded sm:shadow  sm:shadow origin-top space-y-2 sm:space-y-0 duration-300;
+}
+
+@media screen and (max-width: 720px) {
+  .paris {
+    background-image: url("./access/mobile_paris.jpg");
+  }
+}
