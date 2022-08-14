@@ -36,11 +36,11 @@
 }
 
 .menu {
-  @apply border sm:flex sm:text-base items-center sm:border-0 duration-300  flex-col px-4 lg:px-2 lg:flex-row w-[50%] space-y-2 lg:space-y-0 lg:w-fit sm:text-lg text-green-800 font-[500] fixed h-screen lg:h-fit bg-white top-0 right-0 lg:static lg:space-x-8;
+  @apply border lg:flex sm:text-base items-center sm:border-0 duration-300  flex-col px-4 lg:px-2 lg:flex-row w-[50%] space-y-2 lg:space-y-0 lg:w-fit sm:text-lg text-green-800 font-[500] fixed h-screen lg:h-fit bg-white top-0 right-0 lg:static lg:space-x-8;
 }
 
 .dropdown {
-  @apply bg-white sm:border sm:text-xs  w-[150px] rounded sm:shadow  sm:shadow origin-top space-y-2 sm:space-y-0 duration-300;
+  @apply bg-white lg:border lg:text-xs  w-[150px] rounded lg:shadow origin-top space-y-2 lg:space-y-0 duration-300;
 }
 
 @media screen and (max-width: 720px) {

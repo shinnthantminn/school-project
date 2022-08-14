@@ -53,16 +53,16 @@ router.post(
 );
 
 //private
-//url:http://localhost:4000/api/v1/post/drop/comment/:comment_id/:post_id
+//url:http://localhost:4000/api/v1/post/drop/comment/:comment_id/
 //drop comment
 router.delete(
-  "/drop/comment/:comment_id/:post_id",
+  "/drop/comment/:comment_id",
   validateToken,
   controller.dropComment
 );
 
 //public
-//url:
+//url:http://localhost:4000/api/v1/post/per/:post_id
 //post get by id
 router.get("/per/:id", controller.GetById);
 

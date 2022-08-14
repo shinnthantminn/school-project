@@ -23,8 +23,7 @@ const Navbar = () => {
       if (
         e.path[1] !== refer.current &&
         e.path[3] !== refer.current &&
-        e.path[0].id !== "mobile" &&
-        e.path[2].id !== "mobile"
+        e.path[0].id !== "mobile"
       ) {
         setShow(false);
       }
@@ -89,7 +88,7 @@ const Navbar = () => {
                 onClick={handleDropDown}
                 ref={dropDownRefer}
                 className={
-                  "hidden sm:flex cursor-pointer rounded-full w-[35px] h-[35px] hover:ring-1 duration-300 hover:ring-green-200"
+                  "hidden lg:flex cursor-pointer rounded-full w-[35px] h-[35px] hover:ring-1 duration-300 hover:ring-green-200"
                 }
               >
                 <img
@@ -106,7 +105,7 @@ const Navbar = () => {
           ) : (
             <button
               ref={dropDownRefer}
-              className="hidden sm:flex items-center space-x-1"
+              className="hidden lg:flex items-center space-x-1"
               onClick={handleDropDown}
             >
               <span>Login/SignUp</span>
@@ -115,7 +114,7 @@ const Navbar = () => {
           )}
           <div
             className={
-              data ? "sm:absolute -left-[100px] top-[40px]" : "sm:absolute"
+              data ? "lg:absolute -left-[100px] top-[40px]" : "lg:absolute"
             }
           >
             <AuthNav drop={dropDown} />

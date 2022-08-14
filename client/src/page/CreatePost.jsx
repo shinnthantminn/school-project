@@ -20,8 +20,10 @@ const CreatePost = () => {
       <div className="w-full sm:w-[70%] mx-auto">
         <div className="px-7 py-7">
           <div className={"flex justify-between"}>
-            <h1 className="text-2xl font-semibold">Create a New Post</h1>
-            <div className="font-semibold flex items-center  space-x-2 text-gray-500">
+            <h1 className="text-lg sm:text-2xl font-semibold">
+              Create a New Post
+            </h1>
+            <div className="font-semibold flex items-center space-x-2 text-gray-500">
               <BsFillCalendarEventFill />
               <p>{new Date(Date.now()).toDateString()}</p>
             </div>

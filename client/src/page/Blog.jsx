@@ -23,7 +23,7 @@ const Blog = ({ user }) => {
         <div className="w-[95%] lg:w-[70%] mx-auto pt-24">
           <div className="w-full sm:w-[80%] 2xl:w-[70%] mx-auto">
             {user.isAuthorization && (
-              <div className="px-7 mb-10 flex justify-between items-center py-7 border rounded-xl">
+              <div className="px-2 sm:px-7 mb-10 flex justify-between items-center py-7 border rounded-xl">
                 <div>
                   <h2 className="text-2xl text-gray-400 font-semibold">
                     Welcome
@@ -41,7 +41,7 @@ const Blog = ({ user }) => {
               </div>
             )}
 
-            <div className="space-y-10">
+            <div className="space-y-10 pb-10">
               {post.post?.map((i) => (
                 <BlogItem key={i._id} data={i} />
               ))}

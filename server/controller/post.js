@@ -70,6 +70,7 @@ const editPost = async (req, res, next) => {
 };
 
 const deletePost = async (req, res, next) => {
+  console.log(req.params);
   try {
     const finder = await DB.findById(req.params.post);
     if (finder.user._id.equals(req.user._id)) {
@@ -111,7 +112,10 @@ const addComment = async (req, res, next) => {
         "comment user",
         "-password"
       );
-      helper.fMsg(res, true, 201, "add comment complete", post);
+      const comment = await commentDB
+        .findById(commentItem._id)
+        .populate("user", "-password");
+      helper.fMsg(res, true, 201, "add comment complete", comment);
     } else {
       helper.fMsg(res, false, 404, "post no found");
     }
@@ -123,17 +127,19 @@ const addComment = async (req, res, next) => {
 const dropComment = async (req, res, next) => {
   try {
     const finder = await commentDB.findById(req.params.comment_id);
-    const postFinder = await DB.findById(req.params.post_id);
-    if (finder && postFinder) {
-      await DB.findByIdAndUpdate(postFinder._id, {
-        $pull: { comment: finder._id },
-      });
-      await commentDB.findByIdAndDelete(finder._id);
-      const post = DB.findById(postFinder._id).populate(
-        "user comment",
-        "-password"
-      );
-      helper.fMsg(res, true, 201, "drop comment complete", post);
+    if (finder) {
+      const postFinder = await DB.findById(finder.post);
+      if (postFinder) {
+        await DB.findByIdAndUpdate(postFinder._id, {
+          $pull: { comment: finder._id },
+        });
+        await commentDB.findByIdAndDelete(finder._id);
+        const post = await DB.findById(postFinder._id).populate(
+          "user comment",
+          "-password"
+        );
+        helper.fMsg(res, true, 201, "drop comment complete", post);
+      } else helper.fMsg(res, false, 404, "something not found");
     } else helper.fMsg(res, false, 404, "something not found");
   } catch (e) {
     next(new Error(e));
@@ -142,10 +148,18 @@ const dropComment = async (req, res, next) => {
 
 const GetById = async (req, res, next) => {
   try {
-    const finder = await DB.findById(req.params.id).populate(
-      "user comment",
-      "-password"
-    );
+    const finder = await DB.findById(req.params.id)
+      .populate({
+        path: "user",
+        select: "-password",
+      })
+      .populate({
+        path: "comment",
+        populate: {
+          path: "user",
+          select: "-password",
+        },
+      });
     if (finder) {
       helper.fMsg(res, true, 200, "post found", finder);
     } else helper.fMsg(res, false, 401, "post no found");

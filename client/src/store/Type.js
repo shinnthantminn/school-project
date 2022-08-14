@@ -15,3 +15,5 @@ export const PostFail = "PostFail";
 export const GetParPost = "GetParPost";
 export const DeletePost = "DeletePost";
 export const EditPost = "EditPost";
+export const addComment = "addComment";
+export const dropComment = "dropComment";

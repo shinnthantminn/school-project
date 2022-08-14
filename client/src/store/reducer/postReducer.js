@@ -6,6 +6,8 @@ import {
   GetParPost,
   DeletePost,
   EditPost,
+  addComment,
+  dropComment,
 } from "../Type.js";
 const initialState = {
   loading: false,
@@ -49,6 +51,12 @@ const postReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         perPost: action.payload,
+      };
+    case dropComment:
+    case addComment:
+      return {
+        ...state,
+        loading: false,
       };
     default:
       return state;

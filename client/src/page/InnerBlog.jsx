@@ -45,7 +45,10 @@ const InnerBlog = () => {
               </div>
               <div className="w-full h-[400px] mt-5">
                 <img
-                  src={`http://localhost:4000/upload/Post/${data.perPost?.image}`}
+                  src={
+                    data.perPost?.image &&
+                    `http://localhost:4000/upload/Post/${data.perPost.image}`
+                  }
                   className="w-full rounded-xl h-full object-cover"
                   alt=""
                 />

@@ -2,29 +2,58 @@ import { Formik, Form } from "formik";
 import * as yup from "yup";
 import FormControl from "../FormControl.jsx";
 import defaultUser from "../../../access/default.png";
+import {
+  AddComment,
+  DeleteComment,
+} from "../../../store/actions/postAction.js";
+import { useDispatch, useSelector } from "react-redux";
+import CommentItem from "../../Comment/CommentItem.jsx";
+import { useEffect, useState } from "react";
 
 const initialState = {
   comment: "",
 };
 
-const validationSchema = yup.object({
-  comment: yup.string().required("That field was required"),
+const validateSchema = yup.object({
+  comment: yup.string().required("Comment was can't empty"),
 });
 
 const CommentForm = ({ data }) => {
-  const onSubmit = (value) => {
-    console.log(value);
+  const dispatch = useDispatch();
+  const post = useSelector((state) => state.post.perPost);
+  const [comment, setComment] = useState([]);
+
+  useEffect(() => {
+    setComment(post?.comment);
+  }, []);
+
+  const onSubmit = async (value, action) => {
+    const res = await AddComment(dispatch, post._id, value);
+    if (res.con) {
+      setComment((pre) => [...pre, res.result]);
+      action.resetForm();
+    }
   };
 
-  console.log(data);
+  const handleDelete = async (i) => {
+    const res = await DeleteComment(dispatch, i);
+    setComment((pre) => pre.filter((x) => x._id !== i));
+  };
 
   return (
     <div>
       <h1 className="my-5 text-xl font-bold text-center">Users Comment</h1>
+      <div className="space-y-2">
+        {comment.map((i) => (
+          <CommentItem key={i._id} data={i} drop={handleDelete} />
+        ))}
+      </div>
       <Formik
         initialValues={initialState}
-        validationSchema={validationSchema}
         onSubmit={onSubmit}
+        validationSchema={validateSchema}
+        validateOnChange={true}
+        validateOnBlur={false}
       >
         <Form>
           <FormControl
