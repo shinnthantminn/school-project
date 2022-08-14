@@ -1,7 +1,16 @@
-import { PostStart, PostFail, addPost, getAllPost } from "../Type.js";
+import {
+  PostStart,
+  PostFail,
+  addPost,
+  getAllPost,
+  GetParPost,
+  DeletePost,
+  EditPost,
+} from "../Type.js";
 const initialState = {
   loading: false,
   post: null,
+  perPost: null,
   error: "",
 };
 
@@ -11,6 +20,12 @@ const postReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case EditPost:
+    case DeletePost:
+      return {
+        ...state,
+        perPost: null,
       };
     case addPost:
       return {
@@ -28,6 +43,12 @@ const postReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload,
+      };
+    case GetParPost:
+      return {
+        ...state,
+        loading: false,
+        perPost: action.payload,
       };
     default:
       return state;

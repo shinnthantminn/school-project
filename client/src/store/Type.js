@@ -12,3 +12,6 @@ export const addPost = "addPost";
 export const getAllPost = "GetAllPost";
 export const PostStart = "PostStart";
 export const PostFail = "PostFail";
+export const GetParPost = "GetParPost";
+export const DeletePost = "DeletePost";
+export const EditPost = "EditPost";

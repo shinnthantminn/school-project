@@ -14,6 +14,8 @@ import LandingPage from "./page/LandingPage.jsx";
 import Blog from "./page/Blog.jsx";
 import InnerChangePassword from "./page/InnerChangePassword.jsx";
 import CreatePost from "./page/CreatePost.jsx";
+import InnerBlog from "./page/InnerBlog.jsx";
+import EditPost from "./page/EditPost.jsx";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -53,6 +55,8 @@ const App = () => {
           element={<InnerChangePassword user={user} />}
         />
         <Route path={"/create/post"} element={<CreatePost />} />
+        <Route path={"/blog/:id"} element={<InnerBlog />} />
+        <Route path={"/blog/edit/"} element={<EditPost />} />
       </Routes>
     </div>
   );

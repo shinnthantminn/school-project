@@ -119,7 +119,7 @@ const SignUpForm = ({ submit }) => {
 
         <button
           type="submit"
-          className="bg-teal-800 w-full py-2 rounded mb-6 text-lg mt-10 text-center text-xl rounded-full text-white"
+          className="bg-teal-800 w-full !rounded-full py-2 rounded mb-6 text-lg mt-10 text-center text-xl text-white"
         >
           Sign Up
         </button>

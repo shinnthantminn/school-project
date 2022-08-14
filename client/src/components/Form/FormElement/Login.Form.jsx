@@ -85,7 +85,7 @@ const LoginForm = ({ submit }) => {
 
           <button
             type="login"
-            className="text-xl font-[500] rounded-full w-full py-3 mt-5 bg-cyan-900 text-white"
+            className="text-xl font-[500] rounded-full w-full py-3 mt-5 bg-cyan-800 text-white"
           >
             Sign Up
           </button>

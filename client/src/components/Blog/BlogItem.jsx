@@ -22,7 +22,9 @@ const BlogItem = ({ data }) => {
               {data.title}
             </h1>
             <p className="text-sm hidden sm:block text-gray-500">
-              {data.description}
+              {data.description.length > 300
+                ? `${data.description.slice(0, 300)} ...`
+                : data.description}
             </p>
           </div>
           <div className="flex justify-between items-center">

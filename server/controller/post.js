@@ -77,7 +77,7 @@ const deletePost = async (req, res, next) => {
         fs.unlinkSync(`./upload/Post/${finder.image}`);
         await commentDB.deleteMany({ post: req.params.post });
         await DB.findByIdAndDelete(finder._id);
-        helper.fMsg(res, true, 204, "post update was complete");
+        helper.fMsg(res, true, 204, "post Delete was complete");
       } else {
         helper.fMsg(res, false, 404, "post no found");
       }
