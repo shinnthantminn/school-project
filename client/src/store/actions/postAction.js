@@ -8,6 +8,7 @@ import {
   EditPost,
   addComment,
   dropComment,
+  getLatest,
 } from "../Type.js";
 import { toast } from "react-toastify";
 import { fetch } from "../../ApiCall.js";
@@ -142,10 +143,26 @@ export const DeleteComment = async (dispatch, comment_id) => {
     dispatch({
       type: dropComment,
     });
-    console.log(res);
     return res.data.con;
   } catch (e) {
-    console.log(e);
+    toast.error(e.response.data.msg);
+    dispatch({
+      type: PostFail,
+      payload: e.response.data.msg,
+    });
+    return e.response.data.con;
+  }
+};
+
+export const GetLatestPost = async (dispatch) => {
+  try {
+    const res = await fetch.get(`http://localhost:4000/api/v1/post/get/latest`);
+    dispatch({
+      type: getLatest,
+      payload: res.data.result,
+    });
+    return res.data.con;
+  } catch (e) {
     toast.error(e.response.data.msg);
     dispatch({
       type: PostFail,

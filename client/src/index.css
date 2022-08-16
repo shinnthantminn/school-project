@@ -8,6 +8,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 .form {
   @apply border rounded-sm outline-0 w-full px-3 py-3 rounded-full mt-2 duration-300 focus:ring-2 focus:ring-green-200;
 }
@@ -36,7 +40,7 @@
 }
 
 .menu {
-  @apply border lg:flex sm:text-base items-center sm:border-0 duration-300  flex-col px-4 lg:px-2 lg:flex-row w-[50%] space-y-2 lg:space-y-0 lg:w-fit sm:text-lg text-green-800 font-[500] fixed h-screen lg:h-fit bg-white top-0 right-0 lg:static lg:space-x-8;
+  @apply border lg:flex items-center sm:border-0 duration-300  flex-col px-4 lg:px-2 lg:flex-row w-[50%] space-y-2 lg:space-y-0 lg:w-fit sm:text-lg text-green-800 font-[500] fixed h-screen lg:h-fit bg-white top-0 right-0 lg:static lg:space-x-8;
 }
 
 .dropdown {

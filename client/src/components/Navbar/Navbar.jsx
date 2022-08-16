@@ -47,7 +47,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex z-[1000] flex-wrap bg-white fixed w-screen shadow px-2 py-4 lg:px-6 lg:py-5 border-b top-0 justify-between items-center">
+    <div
+      id={"top"}
+      className="flex z-[1000] flex-wrap bg-white fixed w-screen shadow px-2 py-4 lg:px-6 lg:py-5 border-b top-0 justify-between items-center"
+    >
       <div className="text-2xl">
         <Link to={"/"}>
           <img src={Logo} alt="logo.png " className="w-[170px]" />
@@ -76,7 +79,7 @@ const Navbar = () => {
           <Link to={"/"}>Best Budget</Link>
         </li>
         <li className={"w-fit"}>
-          <Link to={"/"}>Insta Gallery</Link>
+          <Link to={"/insta"}>Insta Gallery</Link>
         </li>
         <li className={"w-fit"}>
           <Link to={"/blog"}>Blog</Link>

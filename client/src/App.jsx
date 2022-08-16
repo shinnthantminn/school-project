@@ -16,6 +16,8 @@ import InnerChangePassword from "./page/InnerChangePassword.jsx";
 import CreatePost from "./page/CreatePost.jsx";
 import InnerBlog from "./page/InnerBlog.jsx";
 import EditPost from "./page/EditPost.jsx";
+import Paris from "./page/Paris.jsx";
+import InstaGallery from "./page/InstaGallery.jsx";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -39,7 +41,7 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <div className={"overflow-x-hidden"}>
       <Alert />
       <Navbar />
       <Routes>
@@ -54,6 +56,8 @@ const App = () => {
           path={"/password&change"}
           element={<InnerChangePassword user={user} />}
         />
+        <Route path={"/insta"} element={<InstaGallery />} />
+        <Route path={"/paris"} element={<Paris />} />
         <Route path={"/create/post"} element={<CreatePost />} />
         <Route path={"/blog/:id"} element={<InnerBlog />} />
         <Route path={"/blog/edit/"} element={<EditPost />} />

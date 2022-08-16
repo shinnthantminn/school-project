@@ -4,6 +4,8 @@ import { GetAllPost } from "../store/actions/postAction.js";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "./Loading.jsx";
 import BlogItem from "../components/Blog/BlogItem.jsx";
+import { Waypoint } from "react-waypoint";
+import Footer from "../components/Footer.jsx";
 
 const Blog = ({ user }) => {
   const dispatch = useDispatch();
@@ -13,7 +15,9 @@ const Blog = ({ user }) => {
     GetAllPost(dispatch, 1);
   }, []);
 
-  console.log(post);
+  const handleEnter = () => {
+    console.log("Hello");
+  };
 
   return (
     <>

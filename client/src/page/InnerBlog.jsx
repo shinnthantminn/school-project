@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "./Loading.jsx";
 import { AiFillCalendar } from "react-icons/all";
 import CommentForm from "../components/Form/FormElement/Comment.form.jsx";
+import Footer from "../components/Footer.jsx";
 
 const InnerBlog = () => {
   const param = useParams();
@@ -99,6 +100,9 @@ const InnerBlog = () => {
                   )}
               </div>
             </div>
+          </div>
+          <div className="mt-20">
+            <Footer />
           </div>
         </>
       )}

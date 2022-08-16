@@ -8,6 +8,7 @@ import {
   EditPost,
   addComment,
   dropComment,
+  getLatest,
 } from "../Type.js";
 const initialState = {
   loading: false,
@@ -35,6 +36,7 @@ const postReducer = (state = initialState, action) => {
         loading: false,
       };
     case getAllPost:
+    case getLatest:
       return {
         ...state,
         loading: false,

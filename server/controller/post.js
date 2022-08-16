@@ -168,6 +168,20 @@ const GetById = async (req, res, next) => {
   }
 };
 
+const GetLatestPost = async (req, res, next) => {
+  try {
+    const finder = await DB.find()
+      .limit(4)
+      .sort({ createdAt: -1 })
+      .populate("user", "-password");
+    if (finder) {
+      helper.fMsg(res, true, 201, "that was latest 5 post", finder);
+    } else helper.fMsg(res, false, 404, "post not found");
+  } catch (e) {
+    next(new Error(e.message));
+  }
+};
+
 module.exports = {
   addPost,
   getAllPost,
@@ -176,4 +190,5 @@ module.exports = {
   addComment,
   dropComment,
   GetById,
+  GetLatestPost,
 };

@@ -62,8 +62,13 @@ router.delete(
 );
 
 //public
-//url:http://localhost:4000/api/v1/post/per/:post_id
+//url:http://localhost:4000/api/v1/post/get/lastest
 //post get by id
-router.get("/per/:id", controller.GetById);
+router.get("/per/:id",controller.GetById)
+
+//public
+//url:http://localhost:4000/api/v1/post/get/lastest
+//get 5 latest post
+router.get("/get/latest", controller.GetLatestPost);
 
 module.exports = router;

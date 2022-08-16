@@ -17,3 +17,4 @@ export const DeletePost = "DeletePost";
 export const EditPost = "EditPost";
 export const addComment = "addComment";
 export const dropComment = "dropComment";
+export const getLatest = "getLatest";
