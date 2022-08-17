@@ -5,6 +5,19 @@ import { Link, useNavigate } from "react-router-dom";
 import Logo from "../access/logo.png";
 import Loading from "./Loading.jsx";
 import PrivateRoute from "../helper/PrivateRoute.jsx";
+import { motion } from "framer-motion";
+
+const animation = {
+  hidden: {
+    scale: 0,
+  },
+  visible: {
+    scale: 1,
+  },
+  exit: {
+    scale: 0,
+  },
+};
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -20,7 +33,13 @@ const Login = () => {
 
   return (
     <PrivateRoute check={!localStorage.token} path={"/blog"}>
-      <div className="pt-10 min-h-screen w-screen flex justify-center items-center">
+      <motion.div
+        variants={animation}
+        initial={"hidden"}
+        animate={"visible"}
+        exit={"exit"}
+        className="pt-10 min-h-screen w-screen flex justify-center items-center"
+      >
         <div className="bg-white py-14 px-5 sm:px-10 w-[98%] sm:w-[50%] lg:w-[40%] 2xl:w-[30%]">
           {state.loading ? (
             <>
@@ -47,7 +66,7 @@ const Login = () => {
             </>
           )}
         </div>
-      </div>
+      </motion.div>
     </PrivateRoute>
   );
 };

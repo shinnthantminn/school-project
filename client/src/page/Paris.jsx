@@ -14,10 +14,29 @@ import {
   ImFacebook,
   ImYoutube,
 } from "react-icons/all.js";
+import { motion } from "framer-motion";
+
+const animation = {
+  hidden: {
+    x: 1900,
+  },
+  visible: {
+    x: 0,
+  },
+  exit: {
+    x: 1900,
+  },
+};
 
 const Paris = () => {
   return (
-    <div className="min-h-[100vh] relative z-[20] w-screen bg-gray-300">
+    <motion.div
+      variants={animation}
+      initial={"hidden"}
+      animate={"visible"}
+      exit={"exit"}
+      className="min-h-[100vh] relative z-[20] w-screen bg-gray-300"
+    >
       <div className="w-screen z-[0] relative h-[700px] bg-violet-500">
         <img src={LargeImage} className={"w-full h-full object-cover"} alt="" />
         <div className="absolute top-[50%] text-3xl sm:text-5xl font-semibold text-cyan-900 left-5 sm:left-10 sm:space-y-3">
@@ -187,7 +206,7 @@ const Paris = () => {
           <p>Contact</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

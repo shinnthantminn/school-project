@@ -5,6 +5,19 @@ import { PostAdding } from "../store/actions/postAction.js";
 import { useNavigate } from "react-router-dom";
 import PrivateRoute from "../helper/PrivateRoute.jsx";
 import Footer from "../components/Footer.jsx";
+import { motion } from "framer-motion";
+
+const animation = {
+  hidden: {
+    y: 1000,
+  },
+  visible: {
+    y: 0,
+  },
+  exit: {
+    y: 1000,
+  },
+};
 
 const CreatePost = () => {
   const dispatch = useDispatch();
@@ -19,7 +32,13 @@ const CreatePost = () => {
 
   return (
     <PrivateRoute check={localStorage.token} path={"/signin"}>
-      <div className="w-[98%] lg:w-[70%] mx-auto pt-24">
+      <motion.div
+        variants={animation}
+        initial={"hidden"}
+        exit={"exit"}
+        animate={"visible"}
+        className="w-[98%] lg:w-[70%] mx-auto pt-24"
+      >
         <div className="w-full sm:w-[70%] mx-auto">
           <div className="px-7 py-7">
             <div className={"flex justify-between"}>
@@ -34,7 +53,7 @@ const CreatePost = () => {
             <CreatePostForm submit={onSubmit} />
           </div>
         </div>
-      </div>
+      </motion.div>
       <Footer />
     </PrivateRoute>
   );

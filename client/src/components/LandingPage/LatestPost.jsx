@@ -16,35 +16,46 @@ const LatestPost = ({ data: { post } }) => {
         </h1>
       </div>
       <div className="flex flex-wrap justify-center bg-gray-300 lg:space-x-3 mt-10 sm:mt-24">
-        {post?.map((i) => (
-          <Link
-            to={`/blog/${i._id}`}
-            key={i._id}
-            className="w-[300px] ml-2 mb-5 lg:m-0 duration-300 hover:scale-[1.1] hover:shadow hover:z-[2000] relative h-[400px]"
-          >
-            <img
-              className="w-full h-full object-cover rounded-lg"
-              src={`http://localhost:4000/upload/Post/${i.image}`}
-              alt="hello.png"
-            />
-            <div className="absolute text-white rounded-b-lg px-3 py-3 bg-[#000000aa] w-full bottom-0">
-              <h1 className="text-xl mb-2 overflow-hidden text-ellipsis">
-                {i.title}
-              </h1>
-              <p className="text-sm">
-                {i.description.length > 300
-                  ? `${i.description.slice(0, 200)} read more...`
-                  : i.description}
-              </p>
-            </div>
-          </Link>
-        ))}
+        <>
+          {post?.length === 0 ? (
+            <>
+              <h1 className="text-center text-2xl py-10"> No post no show </h1>
+            </>
+          ) : (
+            <>
+              {post?.map((i) => (
+                <Link
+                  to={`/blog/${i._id}`}
+                  key={i._id}
+                  className="w-[300px] ml-2 mb-5 lg:m-0 duration-300 hover:scale-[1.1] hover:shadow hover:z-[2000] relative h-[400px]"
+                >
+                  <img
+                    className="w-full h-full object-cover rounded-lg"
+                    src={`http://localhost:4000/upload/Post/${i.image}`}
+                    alt="hello.png"
+                  />
+                  <div className="absolute text-white rounded-b-lg px-3 py-3 bg-[#000000aa] w-full bottom-0">
+                    <h1 className="text-xl mb-2 overflow-hidden text-ellipsis">
+                      {i.title}
+                    </h1>
+                    <p className="text-sm">
+                      {i.description.length > 300
+                        ? `${i.description.slice(0, 200)} read more...`
+                        : i.description}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+              <div className="py-10 w-full flex justify-center">
+                <button className="text-white px-2 py-2 bg-gray-500 rounded">
+                  I want to explore more
+                </button>
+              </div>
+            </>
+          )}
+        </>
       </div>
-      <div className="py-10 w-full flex justify-center">
-        <button className="text-white px-2 py-2 bg-gray-500 rounded">
-          I want to explore more
-        </button>
-      </div>
+
       <div className="w-full bg-white">
         <div className="flex justify-center py-5 items-center">
           <img src={Logo} alt="" className="w-[300px]" />

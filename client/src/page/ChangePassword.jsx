@@ -6,6 +6,19 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
+
+const animation = {
+  hidden: {
+    scale: 0,
+  },
+  visible: {
+    scale: 1,
+  },
+  exit: {
+    scale: 0,
+  },
+};
 
 const ChangePassword = () => {
   const dispatch = useDispatch();
@@ -32,12 +45,18 @@ const ChangePassword = () => {
   };
 
   return (
-    <div className=" min-h-screen w-screen flex justify-center items-center">
-      <div className="bg-white py-14 px-5 sm:px-10 w-[98%] sm:w-[50%] lg:w-[40%] 2xl:w-[30%]">
+    <motion.div
+      variants={animation}
+      initial={"hidden"}
+      animate={"visible"}
+      exit={"exit"}
+      className=" min-h-screen w-screen flex justify-center items-center"
+    >
+      <motion.div className="bg-white py-14 px-5 sm:px-10 w-[98%] sm:w-[50%] lg:w-[40%] 2xl:w-[30%]">
         <h1 className="text-2xl text-center">Change your password</h1>
         <ChangePasswordForm submit={onSubmit} />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

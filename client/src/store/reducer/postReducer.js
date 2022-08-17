@@ -8,6 +8,7 @@ import {
   EditPost,
   addComment,
   dropComment,
+  Pagination,
   getLatest,
 } from "../Type.js";
 const initialState = {
@@ -59,6 +60,12 @@ const postReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+      };
+    case Pagination:
+      return {
+        ...state,
+        loading: false,
+        post: [...state.post, ...action.payload],
       };
     default:
       return state;

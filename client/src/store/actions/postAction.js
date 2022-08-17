@@ -9,6 +9,7 @@ import {
   addComment,
   dropComment,
   getLatest,
+  Pagination,
 } from "../Type.js";
 import { toast } from "react-toastify";
 import { fetch } from "../../ApiCall.js";
@@ -38,6 +39,7 @@ export const GetAllPost = async (dispatch, payload) => {
   try {
     const res = await fetch.get(`http://localhost:4000/api/v1/post/${payload}`);
     dispatch({ type: getAllPost, payload: res.data.result });
+    return res.data.msg;
   } catch (e) {
     toast.error(e.response.data.msg);
     dispatch({
@@ -162,6 +164,23 @@ export const GetLatestPost = async (dispatch) => {
       payload: res.data.result,
     });
     return res.data.con;
+  } catch (e) {
+    toast.error(e.response.data.msg);
+    dispatch({
+      type: PostFail,
+      payload: e.response.data.msg,
+    });
+    return e.response.data.con;
+  }
+};
+
+export const PaginatePost = async (dispatch, number) => {
+  try {
+    const res = await fetch.get(`/post/${number}`);
+    dispatch({
+      type: Pagination,
+      payload: res.data.result,
+    });
   } catch (e) {
     toast.error(e.response.data.msg);
     dispatch({

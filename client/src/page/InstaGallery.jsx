@@ -12,6 +12,7 @@ import ten from "../access/instaGallery/imgGallery10.jpg";
 import twelve from "../access/instaGallery/imgGallery11.jpg";
 import thirty from "../access/instaGallery/imgGallery12.jpg";
 import Logo from "../access/logo.png";
+import { motion } from "framer-motion";
 import {
   AiOutlineInstagram,
   GrTwitter,
@@ -21,6 +22,18 @@ import {
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 import { useState } from "react";
+
+const animation = {
+  hidden: {
+    x: -1400,
+  },
+  visible: {
+    x: 0,
+  },
+  exit: {
+    x: -1400,
+  },
+};
 
 const InstaGallery = () => {
   const [open, setOpen] = useState(false);
@@ -47,7 +60,13 @@ const InstaGallery = () => {
   };
 
   return (
-    <div className="w-[96%] lg:w-[70%] xl:w-[60%] pt-28 mx-auto h-screen">
+    <motion.div
+      variants={animation}
+      initial={"hidden"}
+      animate={"visible"}
+      exit={"exit"}
+      className="w-[96%] lg:w-[70%] xl:w-[60%] pt-28 mx-auto h-screen"
+    >
       <div className="flex flex-wrap justify-evenly items-center">
         <div className="w-[200px] h-[200px] ">
           <img
@@ -122,7 +141,7 @@ const InstaGallery = () => {
           <p>Contact</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

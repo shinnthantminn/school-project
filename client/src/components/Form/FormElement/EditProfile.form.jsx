@@ -67,7 +67,6 @@ const EditProfileForm = ({ submit }) => {
                   isDragging,
                   dragProps,
                 }) => (
-                  // write your building UI
                   <div className="upload__image-wrapper flex justify-center">
                     <button
                       type={"button"}

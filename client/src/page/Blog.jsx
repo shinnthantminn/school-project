@@ -1,22 +1,53 @@
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { GetAllPost } from "../store/actions/postAction.js";
+import { useEffect, useState } from "react";
+import { GetAllPost, PaginatePost } from "../store/actions/postAction.js";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "./Loading.jsx";
 import BlogItem from "../components/Blog/BlogItem.jsx";
-import { Waypoint } from "react-waypoint";
-import Footer from "../components/Footer.jsx";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { motion } from "framer-motion";
+
+const animation = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
+};
 
 const Blog = ({ user }) => {
   const dispatch = useDispatch();
   const post = useSelector((state) => state.post);
+  const [ok, setOk] = useState(true);
+  const [remain, setRemain] = useState(0);
+  const [number, setNumber] = useState(1);
 
   useEffect(() => {
-    GetAllPost(dispatch, 1);
+    (async () => {
+      const res = await GetAllPost(dispatch, number);
+      setRemain(res);
+    })();
   }, []);
 
-  const handleEnter = () => {
-    console.log("Hello");
+  useEffect(() => {
+    if (number === 1) {
+      setNumber(2);
+    }
+
+    if (post.post?.length === remain) {
+      setOk(false);
+    }
+  }, [post.post]);
+
+  const fetchMore = () => {
+    if (post.post.length < remain) {
+      PaginatePost(dispatch, number);
+      setNumber((pre) => pre + 1);
+    }
   };
 
   return (
@@ -24,7 +55,13 @@ const Blog = ({ user }) => {
       {post.loading ? (
         <Loading />
       ) : (
-        <div className="w-[95%] lg:w-[70%] mx-auto pt-24">
+        <motion.div
+          variants={animation}
+          initial={"hidden"}
+          animate={"visible"}
+          exit={"exit"}
+          className="w-[95%] lg:w-[70%] mx-auto pt-24"
+        >
           <div className="w-full sm:w-[80%] 2xl:w-[70%] mx-auto">
             {user.isAuthorization && (
               <div className="px-2 sm:px-7 mb-10 flex justify-between items-center py-7 border rounded-xl">
@@ -45,13 +82,24 @@ const Blog = ({ user }) => {
               </div>
             )}
 
-            <div className="space-y-10 pb-10">
-              {post.post?.map((i) => (
-                <BlogItem key={i._id} data={i} />
-              ))}
-            </div>
+            {post.post && (
+              <>
+                {" "}
+                <InfiniteScroll
+                  next={fetchMore}
+                  hasMore={ok}
+                  loader={<div className="text-center">Loader</div>}
+                  dataLength={post.post.length}
+                  className={"space-y-10 pb-10"}
+                >
+                  {post.post?.map((i) => (
+                    <BlogItem key={i._id} data={i} />
+                  ))}
+                </InfiniteScroll>
+              </>
+            )}
           </div>
-        </div>
+        </motion.div>
       )}
     </>
   );

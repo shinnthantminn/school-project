@@ -6,6 +6,19 @@ import Loading from "./Loading.jsx";
 import { AiFillCalendar } from "react-icons/all";
 import CommentForm from "../components/Form/FormElement/Comment.form.jsx";
 import Footer from "../components/Footer.jsx";
+import { motion } from "framer-motion";
+
+const animation = {
+  hidden: {
+    y: 1000,
+  },
+  visible: {
+    y: 0,
+  },
+  exit: {
+    y: 1000,
+  },
+};
 
 const InnerBlog = () => {
   const param = useParams();
@@ -21,13 +34,13 @@ const InnerBlog = () => {
   const handleBack = () => {
     nav(-1);
   };
-
   const handleEdit = () => {
     nav("/blog/edit");
   };
 
   const handleDelete = async () => {
     await dropPost(dispatch, param.id);
+
     if (data.perPost) {
       nav("/blog");
     }
@@ -39,7 +52,13 @@ const InnerBlog = () => {
         <Loading />
       ) : (
         <>
-          <div className="w-[95%] lg:w-[70%] mx-auto pt-28">
+          <motion.div
+            variants={animation}
+            initial={"hidden"}
+            animate={"visible"}
+            exit={"exit"}
+            className="w-[95%] lg:w-[70%] mx-auto pt-28"
+          >
             <div className="w-full sm:w-[80%] 2xl:w-[70%] mx-auto">
               <div className="w-[full] break-words">
                 <h1 className="text-2xl">{data.perPost?.title}</h1>
@@ -100,7 +119,7 @@ const InnerBlog = () => {
                   )}
               </div>
             </div>
-          </div>
+          </motion.div>
           <div className="mt-20">
             <Footer />
           </div>

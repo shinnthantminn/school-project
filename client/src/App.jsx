@@ -18,13 +18,12 @@ import InnerBlog from "./page/InnerBlog.jsx";
 import EditPost from "./page/EditPost.jsx";
 import Paris from "./page/Paris.jsx";
 import InstaGallery from "./page/InstaGallery.jsx";
+import { AnimatePresence } from "framer-motion";
 
 const App = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const location = useLocation();
-
-  console.log(user);
 
   if (localStorage.token) {
     setHeader(localStorage.token);
@@ -44,24 +43,26 @@ const App = () => {
     <div className={"overflow-x-hidden"}>
       <Alert />
       <Navbar />
-      <Routes>
-        <Route path={"/"} element={<LandingPage />} />
-        <Route path={"/blog"} element={<Blog user={user} />} />
-        <Route path={"/Signin"} element={<Login />} />
-        <Route path={"/signup"} element={<Register />} />
-        <Route path={"/forgot&password"} element={<ForgotPassword />} />
-        <Route path={"/change&password"} element={<ChangePassword />} />
-        <Route path={"/profile&edit"} element={<Dashboard />} />
-        <Route
-          path={"/password&change"}
-          element={<InnerChangePassword user={user} />}
-        />
-        <Route path={"/insta"} element={<InstaGallery />} />
-        <Route path={"/paris"} element={<Paris />} />
-        <Route path={"/create/post"} element={<CreatePost />} />
-        <Route path={"/blog/:id"} element={<InnerBlog />} />
-        <Route path={"/blog/edit/"} element={<EditPost />} />
-      </Routes>
+      <AnimatePresence exitBeforeEnter={true} initial={false}>
+        <Routes location={location} key={location.pathname}>
+          <Route path={"/"} element={<LandingPage />} />
+          <Route path={"/blog"} element={<Blog user={user} />} />
+          <Route path={"/Signin"} element={<Login />} />
+          <Route path={"/signup"} element={<Register />} />
+          <Route path={"/forgot&password"} element={<ForgotPassword />} />
+          <Route path={"/change&password"} element={<ChangePassword />} />
+          <Route path={"/profile&edit"} element={<Dashboard />} />
+          <Route
+            path={"/password&change"}
+            element={<InnerChangePassword user={user} />}
+          />
+          <Route path={"/insta"} element={<InstaGallery />} />
+          <Route path={"/paris"} element={<Paris />} />
+          <Route path={"/create/post"} element={<CreatePost />} />
+          <Route path={"/blog/:id"} element={<InnerBlog />} />
+          <Route path={"/blog/edit/"} element={<EditPost />} />
+        </Routes>
+      </AnimatePresence>
     </div>
   );
 };

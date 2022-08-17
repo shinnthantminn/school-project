@@ -4,6 +4,7 @@ import LatestPost from "../components/LandingPage/LatestPost.jsx";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GetLatestPost } from "../store/actions/postAction.js";
+import { motion } from "framer-motion";
 
 const LandingPage = () => {
   const dispatch = useDispatch();
@@ -12,12 +13,30 @@ const LandingPage = () => {
     GetLatestPost(dispatch);
   }, []);
 
+  const animation = {
+    hidden: {
+      x: 1900,
+    },
+    visible: {
+      x: 0,
+    },
+    exit: {
+      x: 1900,
+    },
+  };
+
   return (
-    <div className="max-h-[100vh] bg-gray-300">
+    <motion.div
+      variants={animation}
+      initial={"hidden"}
+      animate={"visible"}
+      exit={"exit"}
+      className="max-h-[100vh] bg-gray-300"
+    >
       <First />
       <TopDestination />
       <LatestPost data={post} />
-    </div>
+    </motion.div>
   );
 };
 
