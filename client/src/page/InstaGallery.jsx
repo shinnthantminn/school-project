@@ -25,12 +25,15 @@ import { useState } from "react";
 
 const animation = {
   hidden: {
+    opacity: 0,
     x: -1400,
   },
   visible: {
+    opacity: 1,
     x: 0,
   },
   exit: {
+    opacity: 0,
     x: -1400,
   },
 };
