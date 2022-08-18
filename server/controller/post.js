@@ -29,12 +29,13 @@ const getAllPost = async (req, res, next) => {
     const limit = +process.env.LIMIT;
     const reqPage = page >= 1 && page - 1;
     const skipCount = reqPage * limit;
+    const count = await DB.countDocuments({});
     const post = await DB.find()
       .skip(skipCount)
       .limit(limit)
       .sort({ createdAt: -1 })
       .populate("user comment", "-password");
-    helper.fMsg(res, true, 201, "get all post with pagination", post);
+    helper.fMsg(res, true, 201, count, post);
   } catch (e) {
     next(new Error(e));
   }
