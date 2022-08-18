@@ -18,12 +18,15 @@ import { motion } from "framer-motion";
 
 const animation = {
   hidden: {
+    opacity: 0,
     x: 1900,
   },
   visible: {
+    opacity: 1,
     x: 0,
   },
   exit: {
+    opacity: 0,
     x: 1900,
   },
 };

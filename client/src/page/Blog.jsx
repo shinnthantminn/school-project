@@ -39,8 +39,6 @@ const Blog = ({ user }) => {
       setNumber(2);
     }
 
-    console.log(remain);
-
     if (post.post?.length === remain) {
       setOk(false);
     }
