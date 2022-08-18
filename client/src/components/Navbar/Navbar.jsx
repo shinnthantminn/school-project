@@ -49,7 +49,7 @@ const Navbar = () => {
   return (
     <div
       id={"top"}
-      className="flex z-[1000] flex-wrap bg-white fixed w-screen shadow px-2 py-4 lg:px-6 lg:py-5 border-b top-0 justify-between items-center"
+      className="flex z-[10000] flex-wrap bg-white fixed w-screen shadow px-2 py-4 lg:px-6 lg:py-5 border-b top-0 justify-between items-center"
     >
       <div className="text-2xl">
         <Link to={"/"}>
@@ -117,7 +117,9 @@ const Navbar = () => {
           )}
           <div
             className={
-              data ? "lg:absolute -left-[100px] top-[40px]" : "lg:absolute"
+              isAuthorization
+                ? "lg:absolute -left-[100px] top-[40px]"
+                : "lg:absolute"
             }
           >
             <AuthNav drop={dropDown} />

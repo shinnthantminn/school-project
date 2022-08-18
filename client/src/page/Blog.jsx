@@ -6,6 +6,7 @@ import Loading from "./Loading.jsx";
 import BlogItem from "../components/Blog/BlogItem.jsx";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { motion } from "framer-motion";
+import Footer from "../components/Footer.jsx";
 
 const animation = {
   hidden: {
@@ -38,10 +39,12 @@ const Blog = ({ user }) => {
       setNumber(2);
     }
 
+    console.log(remain);
+
     if (post.post?.length === remain) {
       setOk(false);
     }
-  }, [post.post]);
+  }, [post.post, remain]);
 
   const fetchMore = () => {
     if (post.post.length < remain) {
@@ -60,9 +63,9 @@ const Blog = ({ user }) => {
           initial={"hidden"}
           animate={"visible"}
           exit={"exit"}
-          className="w-[95%] lg:w-[70%] mx-auto pt-24"
+          className="w-[95%] lg:w-[70%] mx-auto min-h-full pt-24"
         >
-          <div className="w-full sm:w-[80%] 2xl:w-[70%] mx-auto">
+          <div className="w-full sm:w-[80%] !h-fit 2xl:w-[70%] mx-auto">
             {user.isAuthorization && (
               <div className="px-2 sm:px-7 mb-10 flex justify-between items-center py-7 border rounded-xl">
                 <div>
@@ -82,25 +85,29 @@ const Blog = ({ user }) => {
               </div>
             )}
 
-            {post.post && (
+            {post.post?.length > 0 ? (
               <>
-                {" "}
                 <InfiniteScroll
                   next={fetchMore}
                   hasMore={ok}
                   loader={<div className="text-center">Loader</div>}
                   dataLength={post.post.length}
-                  className={"space-y-10 pb-10"}
+                  className={"space-y-10 pb-10 overflow-y-hidden"}
                 >
                   {post.post?.map((i) => (
                     <BlogItem key={i._id} data={i} />
                   ))}
                 </InfiniteScroll>
               </>
+            ) : (
+              <h1 className="text-center text-4xl font-semibold">
+                No Post To Show
+              </h1>
             )}
           </div>
         </motion.div>
       )}
+      <Footer />
     </>
   );
 };

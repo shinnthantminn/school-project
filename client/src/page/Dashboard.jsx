@@ -3,6 +3,7 @@ import Loading from "./Loading.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { editProfile } from "../store/actions/userAction.js";
 import { motion } from "framer-motion";
+import PrivateRoute from "../helper/PrivateRoute.jsx";
 
 const animation = {
   hidden: {
@@ -25,7 +26,7 @@ const Dashboard = () => {
   };
 
   return (
-    <>
+    <PrivateRoute check={user.isAuthorization} path={"/signin"}>
       {user.loading ? (
         <Loading />
       ) : (
@@ -46,7 +47,7 @@ const Dashboard = () => {
           </div>
         </motion.div>
       )}
-    </>
+    </PrivateRoute>
   );
 };
 

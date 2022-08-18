@@ -8,6 +8,7 @@ import {
   Logout,
   innerPasswordChange,
   EditProfile,
+  AUTHFail,
 } from "../Type.js";
 import { fetch } from "../../ApiCall.js";
 import { toast } from "react-toastify";
@@ -70,7 +71,7 @@ export const authorization = async (dispatch) => {
   } catch (e) {
     localStorage.removeItem("token");
     dispatch({
-      type: Fail,
+      type: AUTHFail,
       payload: e.response.data.msg,
     });
     return e.response.data.con;

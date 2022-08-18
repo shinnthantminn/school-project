@@ -32,7 +32,7 @@ const Login = () => {
   };
 
   return (
-    <PrivateRoute check={!localStorage.token} path={"/blog"}>
+    <PrivateRoute check={!state.isAuthorization} path={"/blog"}>
       <motion.div
         variants={animation}
         initial={"hidden"}

@@ -22,7 +22,7 @@ const animation = {
 const Register = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
-  const { loading } = useSelector((state) => state.user);
+  const { loading, isAuthorization } = useSelector((state) => state.user);
 
   const onSubmit = async (value) => {
     delete value.confirmPassword;
@@ -34,7 +34,7 @@ const Register = () => {
   };
 
   return (
-    <PrivateRoute check={!localStorage.token} path={"/blog"}>
+    <PrivateRoute check={!isAuthorization} path={"/blog"}>
       <motion.div
         variants={animation}
         initial={"hidden"}

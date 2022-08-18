@@ -19,3 +19,4 @@ export const addComment = "addComment";
 export const dropComment = "dropComment";
 export const getLatest = "getLatest";
 export const Pagination = "pagination";
+export const AUTHFail = "AUTHFail";

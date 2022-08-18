@@ -8,13 +8,13 @@ import Footer from "../components/Footer.jsx";
 
 const animation = {
   hidden: {
-    y: 1000,
+    y: 1500,
   },
   visible: {
     y: 0,
   },
   exit: {
-    y: 1000,
+    y: 1500,
   },
 };
 
@@ -30,14 +30,13 @@ const EditPost = () => {
   };
 
   return (
-    <>
-      <motion.div
-        variants={animation}
-        initial={"hidden"}
-        animate={"visible"}
-        exit={"exit"}
-        className="w-[98%] lg:w-[70%] mx-auto pt-24"
-      >
+    <motion.div
+      variants={animation}
+      initial={"hidden"}
+      animate={"visible"}
+      exit={"exit"}
+    >
+      <div className="w-[98%] lg:w-[70%] mx-auto pt-24">
         <div className="w-full sm:w-[70%] mx-auto">
           <div className="px-7 py-7">
             <div className={"flex justify-between"}>
@@ -50,9 +49,9 @@ const EditPost = () => {
             <EditPostForm submit={onSubmit} post={post} />
           </div>
         </div>
-      </motion.div>
+      </div>
       <Footer />
-    </>
+    </motion.div>
   );
 };
 

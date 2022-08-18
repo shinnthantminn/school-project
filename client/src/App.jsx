@@ -4,7 +4,7 @@ import Register from "./page/Register.jsx";
 import Alert from "./components/ErrorAlert/Alert";
 import Dashboard from "./page/Dashboard.jsx";
 import setHeader from "./helper/setHeader.js";
-import { useEffect } from "react";
+import { lazy, useEffect } from "react";
 import { authorization } from "./store/actions/userAction.js";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "./components/Navbar/Navbar.jsx";
@@ -19,6 +19,7 @@ import EditPost from "./page/EditPost.jsx";
 import Paris from "./page/Paris.jsx";
 import InstaGallery from "./page/InstaGallery.jsx";
 import { AnimatePresence } from "framer-motion";
+import Error404 from "./page/Error404.jsx";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -31,11 +32,12 @@ const App = () => {
 
   useEffect(() => {
     if (
-      localStorage.token &&
       location.pathname !== "/change&password" &&
       location.pathname !== "/forgot&password"
     ) {
-      authorization(dispatch);
+      (async () => {
+        const res = await authorization(dispatch);
+      })();
     }
   }, []);
 
@@ -61,6 +63,7 @@ const App = () => {
           <Route path={"/create/post"} element={<CreatePost />} />
           <Route path={"/blog/:id"} element={<InnerBlog />} />
           <Route path={"/blog/edit/"} element={<EditPost />} />
+          <Route path={"*"} element={<Error404 />} />
         </Routes>
       </AnimatePresence>
     </div>

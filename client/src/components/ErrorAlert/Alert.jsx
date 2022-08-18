@@ -4,9 +4,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Alert = () => {
   return (
-    <>
+    <div className="fixed top-20 z-[500000]">
       <ToastContainer pauseOnHover={false} />
-    </>
+    </div>
   );
 };
 

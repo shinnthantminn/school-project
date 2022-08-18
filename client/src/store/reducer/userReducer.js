@@ -9,6 +9,7 @@ import {
   Logout,
   innerPasswordChange,
   EditProfile,
+  AUTHFail,
 } from "../Type.js";
 
 const initialState = {
@@ -50,6 +51,15 @@ const userReducer = (state = initialState, action) => {
         isAuthorization: false,
         data: null,
       };
+    case AUTHFail: {
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        data: null,
+        isAuthorization: false,
+      };
+    }
     case Fail:
       return {
         ...state,

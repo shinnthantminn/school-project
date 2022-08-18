@@ -1,8 +1,21 @@
 import ForgotPasswordEmailForm from "../components/Form/FormElement/ForgotPasswordEmail.Form.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { emailVerifying } from "../store/actions/userAction.js";
-import { useState } from "react";
+import { emailVerifying, LogoutAction } from "../store/actions/userAction.js";
+import { useEffect, useState } from "react";
 import Loading from "./Loading.jsx";
+import { motion } from "framer-motion";
+
+const animation = {
+  hidden: {
+    x: 2000,
+  },
+  visible: {
+    x: 0,
+  },
+  exit: {
+    x: 2000,
+  },
+};
 
 const ForgotPassword = () => {
   const dispatch = useDispatch();
@@ -10,14 +23,26 @@ const ForgotPassword = () => {
   const [state, setState] = useState(false);
   const submit = async (value) => {
     const res = await emailVerifying(dispatch, value);
-    console.log(res);
     if (res) {
       setState(res);
     }
   };
 
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem("token");
+      LogoutAction(dispatch);
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen w-screen flex justify-center items-center">
+    <motion.div
+      variants={animation}
+      initial={"hidden"}
+      animate={"visible"}
+      exit={"exit"}
+      className="min-h-screen w-screen flex justify-center items-center"
+    >
       <div className="bg-white py-14 px-5 sm:px-10 w-[98%] sm:w-[50%] lg:w-[40%] 2xl:w-[30%] rounded">
         {user.loading ? (
           <Loading />
@@ -41,7 +66,7 @@ const ForgotPassword = () => {
           </>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
