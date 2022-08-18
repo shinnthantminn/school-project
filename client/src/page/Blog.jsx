@@ -54,7 +54,7 @@ const Blog = ({ user }) => {
   };
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       {post.loading ? (
         <Loading />
       ) : (
@@ -63,7 +63,7 @@ const Blog = ({ user }) => {
           initial={"hidden"}
           animate={"visible"}
           exit={"exit"}
-          className="w-[95%] lg:w-[70%] mx-auto min-h-full pt-24"
+          className="w-[95%] lg:w-[70%] mx-auto pt-24"
         >
           <div className="w-full sm:w-[80%] !h-fit 2xl:w-[70%] mx-auto">
             {user.isAuthorization && (
@@ -107,8 +107,10 @@ const Blog = ({ user }) => {
           </div>
         </motion.div>
       )}
-      <Footer />
-    </>
+      <div className="mt-auto">
+        <Footer />
+      </div>
+    </div>
   );
 };
 

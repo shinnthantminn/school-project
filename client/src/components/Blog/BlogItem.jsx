@@ -6,7 +6,7 @@ import { AnimationOnScroll } from "react-animation-on-scroll";
 
 const BlogItem = ({ data }) => {
   return (
-    <AnimationOnScroll animateIn={"animate__fadeInUp"}>
+    <AnimationOnScroll animateIn={"animate__fadeIn"}>
       <div className="grid grid-cols-12 pb-10 border-b gap-8">
         <div className="col-span-12 lg:col-span-4 h-[350px]">
           <div className="h-full">

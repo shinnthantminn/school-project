@@ -27,7 +27,7 @@ const LatestPost = ({ data: { post } }) => {
                 <Link
                   to={`/blog/${i._id}`}
                   key={i._id}
-                  className="w-[300px] ml-2 mb-5 lg:m-0 duration-300 hover:scale-[1.1] hover:shadow hover:z-[2000] relative h-[400px]"
+                  className="w-[300px] ml-2 mb-5 lg:m-0 duration-300 hover:-translate-y-5 hover:shadow hover:z-[2000] relative h-[400px]"
                 >
                   <img
                     className="w-full h-full object-cover rounded-lg"
